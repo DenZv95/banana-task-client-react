@@ -1,4 +1,5 @@
 import React from 'react';
+import Field from '../../ui/Field/Field';
 import styles from './SignIn.module.scss';
 
 const SignIn = () => {
@@ -9,20 +10,10 @@ const SignIn = () => {
           <div className={styles['container-form']}>
             <span className={styles['login-form-title']}>Sign In</span>
             <form className={styles.form}>
-              <div className={styles['input-form-container']}>
-                <input
-                  className={styles.input}
-                  type='text'
-                  placeholder='Логин'
-                />
-              </div>
-              <div className={styles['input-form-container']}>
-                <input
-                  className={styles.input}
-                  type='password'
-                  placeholder='Пароль'
-                />
-              </div>
+              <Field placeholder='Email' type='email' required />
+
+              <Field placeholder='Password' type='password' required />
+
               <div className='text-right'>
                 <span className='text1'>Forgot </span>
                 <a className='text2' href='/'>

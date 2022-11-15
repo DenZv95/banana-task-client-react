@@ -1,5 +1,7 @@
+import SignIn from './components/pages/SignIn/SignIn';
+
 function App() {
-  return <div className='App'>Banana Task</div>;
+  return <SignIn />;
 }
 
 export default App;

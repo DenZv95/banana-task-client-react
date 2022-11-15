@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../ui/Button/Button';
 import Field from '../../ui/Field/Field';
 import styles from './SignUp.module.scss';
 
@@ -15,9 +16,8 @@ const SignUp = () => {
 
             <Field placeholder='Password' type='password' required />
 
-            <div className={styles['button-form-container']}>
-              <button className={styles['button-form']}>Sign up</button>
-            </div>
+            <Button text='Sign up' />
+
             <div className={styles['sign-up-form-container']}>
               <span className='text1'>Are you already registered? </span>
               <a className='text3' href='/'>

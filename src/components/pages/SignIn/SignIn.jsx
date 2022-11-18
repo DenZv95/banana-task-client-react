@@ -2,8 +2,11 @@ import React from 'react';
 import Button from '../../ui/Button/Button';
 import Field from '../../ui/Field/Field';
 import styles from './SignIn.module.scss';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+  let navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -21,13 +24,18 @@ const SignIn = () => {
               </a>
             </div>
 
-            <Button text='Sign in' />
+            <Button
+              text='Sign in'
+              callback={() => {
+                navigate('/');
+              }}
+            />
 
             <div className={styles['sign-up-form-container']}>
               <span className='text1'>Don't have an account? </span>
-              <a className='text3' href='/'>
+              <Link className='text3' to='/registration'>
                 Sign up now
-              </a>
+              </Link>
             </div>
           </form>
         </div>

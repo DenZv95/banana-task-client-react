@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/api/',
-  timeout: 1000,
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: '/api',
+  timeout: 500,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 export const $api = async ({ url, type = 'GET', auth = true, body }) => {

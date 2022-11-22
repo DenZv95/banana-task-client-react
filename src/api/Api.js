@@ -33,7 +33,7 @@ export const $api = async ({ url, type = 'GET', auth = true, body }) => {
         break;
     }
 
-    return data;
+    return data.data;
   } catch (error) {
     if (error.response) {
       // Запрос был сделан, и сервер ответил кодом состояния, который

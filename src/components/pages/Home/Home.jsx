@@ -1,32 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../ui/Button/Button';
 import Field from '../../ui/Field/Field';
 import styles from './Home.module.scss';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { $api } from '../../../api/Api';
 
 const Home = () => {
-  const todos = [
+  const [todos, setTodos] = useState([]);
+
+  useQuery(
+    'get tasks',
+    () =>
+      $api({
+        url: `/tasks/list`,
+      }),
     {
-      id: 1,
-      name: 'Task 1',
-      complete: false,
-    },
-    {
-      id: 2,
-      name: 'Task 2',
-      complete: false,
-    },
-    {
-      id: 3,
-      name: 'Task 3',
-      complete: false,
-    },
-    {
-      id: 4,
-      name: 'Task 4',
-      complete: false,
-    },
-  ];
+      refetchOnWindowFocus: false,
+      onSuccess(data) {
+        setTodos(data);
+      },
+    }
+  );
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>

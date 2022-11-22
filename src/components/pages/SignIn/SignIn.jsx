@@ -8,7 +8,7 @@ import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 
 const SignIn = () => {
-  const [email, setEmail] = useState('test@test.ru');
+  const [email, setEmail] = useState('test2@test.ru');
   const [password, setPassword] = useState('123456');
   const { setIsAuth } = useAuth();
 
@@ -27,6 +27,7 @@ const SignIn = () => {
     isLoading,
     error,
   } = useMutation(
+    'Auth',
     () =>
       $api({
         url: '/users/login',

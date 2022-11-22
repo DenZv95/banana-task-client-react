@@ -5,14 +5,17 @@ import styles from './SignUp.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { $api } from '../../../api/Api';
+import { useAuth } from '../../../hooks/useAuth';
 
 const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test@test.ru');
+  const [password, setPassword] = useState('123456');
+  const { setIsAuth } = useAuth();
   let navigate = useNavigate();
 
   const successLogin = (token) => {
     localStorage.setItem('token', token);
+    setIsAuth(true);
     setEmail('');
     setPassword('');
     navigate('/');
@@ -22,30 +25,29 @@ const SignUp = () => {
     mutate: register,
     isLoading,
     error,
-  } = useMutation('Registration', () => {
-    $api(
-      {
+  } = useMutation(
+    'Registration',
+    () =>
+      $api({
         url: '/users/register',
         auth: false,
         type: 'POST',
         body: { email, password },
+      }),
+    {
+      onSuccess(data) {
+        successLogin(data.token);
       },
-      {
-        onSuccess(data) {
-          console.log(data.token);
-          successLogin(data.token);
-        },
-      }
-    );
-  });
+    }
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
     register();
   };
 
   if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <p>Ой...</p>;
 
   return (
     <div className={styles.container}>

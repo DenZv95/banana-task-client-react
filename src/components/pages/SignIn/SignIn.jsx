@@ -1,21 +1,75 @@
-import React from 'react';
+import { useState } from 'react';
 import Button from '../../ui/Button/Button';
 import Field from '../../ui/Field/Field';
 import styles from './SignIn.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { $api } from '../../../api/Api';
+import { useAuth } from '../../../hooks/useAuth';
 
 const SignIn = () => {
+  const [email, setEmail] = useState('test@test.ru');
+  const [password, setPassword] = useState('123456');
+  const { setIsAuth } = useAuth();
+
+  const successLogin = (token) => {
+    localStorage.setItem('token', token);
+    setIsAuth(true);
+    setEmail('');
+    setPassword('');
+    navigate('/');
+  };
+
   let navigate = useNavigate();
+
+  const {
+    mutate: auth,
+    isLoading,
+    error,
+  } = useMutation(
+    () =>
+      $api({
+        url: '/users/login',
+        auth: false,
+        type: 'POST',
+        body: { email, password },
+      }),
+    {
+      onSuccess(data) {
+        successLogin(data.token);
+      },
+    }
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth();
+  };
+
+  if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <p>ОЙ...</p>;
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles['container-form']}>
           <span className={styles['login-form-title']}>Sign In</span>
-          <form className={styles.form}>
-            <Field placeholder='Email' type='email' required />
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <Field
+              placeholder='Email'
+              type='email'
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-            <Field placeholder='Password' type='password' required />
+            <Field
+              placeholder='Password'
+              type='password'
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
             <div className='text-right'>
               <span className='text1'>Forgot </span>
@@ -27,7 +81,7 @@ const SignIn = () => {
             <Button
               text='Sign in'
               callback={() => {
-                navigate('/');
+                //navigate('/');
               }}
             />
 

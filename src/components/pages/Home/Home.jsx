@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Button from '../../ui/Button/Button';
-import Field from '../../ui/Field/Field';
 import styles from './Home.module.scss';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';

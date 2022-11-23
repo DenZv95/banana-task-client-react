@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { AuthContext } from './contexts/AuthContext';
 import { useState } from 'react';
 import Auth from './components/pages/Auth/Auth';
+import Home from './components/pages/Home/Home';
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,8 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <AuthContext.Provider value={{ isAuth, setIsAuth }}>
         <Routes>
-          <Route path='/' element={<Auth />} />
+          <Route path='/login' element={<Auth />} />
+          <Route path='/' element={<Home />} />
         </Routes>
       </AuthContext.Provider>
       <ReactQueryDevtools initialIsOpen={false} />

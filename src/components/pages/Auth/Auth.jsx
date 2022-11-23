@@ -6,9 +6,13 @@ import { useAuth } from '../../../hooks/useAuth';
 import styles from './Auth.module.scss';
 
 const Auth = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test3@test.ru');
+  const [password, setPassword] = useState('123456');
+
+  const [type, setType] = useState('auth');
+
   const { setIsAuth } = useAuth();
+
   let navigate = useNavigate();
 
   const successLogin = (token) => {
@@ -62,14 +66,20 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    auth();
+    if (type === 'auth') {
+      auth();
+    } else {
+      register();
+    }
   };
 
   return (
     <div className={styles.limiter}>
       <div className={styles.container}>
         <div className={styles.headerContainer}>
-          <h1 className={styles.header}>Sign In</h1>
+          <h1 className={styles.header}>
+            {type === 'auth' ? 'Sign In' : 'Sign Up'}
+          </h1>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -91,17 +101,24 @@ const Auth = () => {
               setPassword(e.target.value);
             }}
           />
-          <div className='text-right'>
-            <span className='text1'>Forgot </span>
-            <a href='/' className='text2'>
-              Username / Password?
-            </a>
-          </div>
-          <button className={styles.button}> Sign in</button>
+          <button className={styles.button}>
+            {type === 'auth' ? 'Sign In' : 'Sign Up'}
+          </button>
         </form>
         <div className={styles.fluterText}>
           <span className='text1'>Don't have an account?</span>
-          <span className='text3'>Sign up now</span>
+          <span
+            className='text3'
+            onClick={() => {
+              if (type === 'auth') {
+                setType('reg');
+              } else {
+                setType('auth');
+              }
+            }}
+          >
+            {type === 'auth' ? 'Sign up now' : 'Sign in now'}
+          </span>
         </div>
       </div>
     </div>

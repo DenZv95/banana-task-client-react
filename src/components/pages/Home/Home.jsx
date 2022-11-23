@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import styles from './Home.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { $api } from '../../../api/Api';
+import { useAuth } from '../../../hooks/useAuth';
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
+  let navigate = useNavigate();
+  const { isAuth } = useAuth();
+
+  if (!isAuth) {
+    navigate('/login');
+  }
 
   useQuery(
     'get tasks',

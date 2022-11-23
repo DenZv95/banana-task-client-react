@@ -6,7 +6,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import styles from './Auth.module.scss';
 
 const Auth = () => {
-  const [email, setEmail] = useState('test3@test.ru');
+  const [email, setEmail] = useState('test2@test.ru');
   const [password, setPassword] = useState('123456');
 
   const [type, setType] = useState('auth');
@@ -38,7 +38,6 @@ const Auth = () => {
       }),
     {
       onSuccess(data) {
-        console.log(data.token);
         successLogin(data.token);
       },
     }

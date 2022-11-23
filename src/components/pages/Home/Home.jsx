@@ -29,15 +29,18 @@ const Home = () => {
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.limiter}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <Link to='/login'>logout</Link>
+        <div className={styles.searchContainer}>
+          <input placeholder='Search' className={styles.input} />
+          <div className={styles.searchButtonContainer}>
+            <button className={styles.button}>All</button>
+            <button className={styles.button}>Active</button>
+            <button className={styles.button}>Done</button>
+            <button className={styles.circleButton}>X</button>
+          </div>
         </div>
-        <form className={styles.ToDoInput}>
-          <input type='text' placeholder='todo...' className={styles.input} />
-          <input type='submit' value='Add' />
-        </form>
+
         <ul className={styles.ToDoList}>
           {todos.map((todo) => {
             return (
@@ -47,6 +50,11 @@ const Home = () => {
             );
           })}
         </ul>
+
+        <div className={styles.addContainer}>
+          <input type='text' placeholder='Todo' className={styles.input} />
+          <button className={styles.button}>Add</button>
+        </div>
       </div>
     </div>
   );

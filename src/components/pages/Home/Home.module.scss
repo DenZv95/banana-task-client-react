@@ -27,7 +27,7 @@
   flex: 2 1 0%;
   padding: 0 25px;
   height: 50px;
-  color: #c0c0c0;
+  color: #8e8c8c;
   border-radius: 15px;
 }
 
@@ -62,12 +62,36 @@
 
 .ToDoItem {
   width: 100%;
-  height: 40px;
-  background: rgb(141, 141, 141);
-  margin-bottom: 10px;
+  height: 50px;
+  background: #ebebeb;
+  color: #8e8c8c;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.todoDetails {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+}
+
+.todoTexts {
+  display: grid;
+  gap: 5px;
+}
+
+.todoActions {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .addContainer {

@@ -33,16 +33,38 @@ const Home = () => {
     }
   );
 
+  /*filter btn*/
+  const btnList = [
+    { name: 'all', label: 'All' },
+    { name: 'active', label: 'Active' },
+    { name: 'done', label: 'Done' },
+  ];
+
+  const [filter, setFilter] = useState('all');
+
+  const btns = btnList.map((btn) => {
+    const isActive = filter === btn.name;
+    const classBtn = isActive ? styles.filterBtnActive : styles.filterBtn;
+    return (
+      <button
+        key={btn.name}
+        className={`${styles.buttonFilter} ${classBtn}`}
+        onClick={() => {
+          setFilter(btn.name);
+        }}
+      >
+        {btn.label}
+      </button>
+    );
+  });
+  /*filter btn*/
+
   return (
     <div className={styles.limiter}>
       <div className={styles.container}>
         <div className={styles.searchContainer}>
           <input placeholder='Search' className={styles.input} />
-          <div className={styles.searchButtonContainer}>
-            <button className={styles.button}>All</button>
-            <button className={styles.button}>Active</button>
-            <button className={styles.button}>Done</button>
-          </div>
+          <div className={styles.searchButtonContainer}>{btns}</div>
           <button className={styles.circleButton}>
             <SettingsImage />
           </button>

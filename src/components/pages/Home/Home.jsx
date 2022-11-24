@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styles from './Home.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 
-import checkImage from '../../../images/check.svg';
-import trashImage from '../../../images/trash.svg';
-import settingsImage from '../../../images/settings.svg';
-import editImage from '../../../images/edit-2.svg';
+import { ReactComponent as CheckImage } from '../../../images/check.svg';
+import { ReactComponent as TrashImage } from '../../../images/trash.svg';
+import { ReactComponent as SettingsImage } from '../../../images/settings.svg';
+import { ReactComponent as EditImage } from '../../../images/edit-2.svg';
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
@@ -42,30 +42,18 @@ const Home = () => {
             <button className={styles.button}>All</button>
             <button className={styles.button}>Active</button>
             <button className={styles.button}>Done</button>
-            <button className={styles.circleButton}>
-              <img
-                src={settingsImage}
-                width='29'
-                height='23'
-                alt='settings'
-                draggable={false}
-              />
-            </button>
           </div>
+          <button className={styles.circleButton}>
+            <SettingsImage />
+          </button>
         </div>
         <ul className={styles.ToDoList}>
           {todos.map((todo, id) => {
             return (
               <li key={id} className={styles.ToDoItem}>
                 <div className={styles.todoDetails}>
-                  <button>
-                    <img
-                      src={checkImage}
-                      width='29'
-                      height='23'
-                      alt='check'
-                      draggable={false}
-                    />
+                  <button className={styles.buttonSvg}>
+                    <CheckImage />
                   </button>
                   <div className={styles.todoTexts}>
                     <span> {todo.name}</span>
@@ -73,23 +61,11 @@ const Home = () => {
                   </div>
                 </div>
                 <div className={styles.todoActions}>
-                  <button>
-                    <img
-                      src={trashImage}
-                      width='29'
-                      height='23'
-                      alt='trash'
-                      draggable={false}
-                    />
+                  <button className={styles.buttonSvg}>
+                    <TrashImage />
                   </button>
-                  <button>
-                    <img
-                      src={editImage}
-                      width='29'
-                      height='23'
-                      alt='edit'
-                      draggable={false}
-                    />
+                  <button className={styles.buttonSvg}>
+                    <EditImage />
                   </button>
                 </div>
               </li>

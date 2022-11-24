@@ -20,6 +20,7 @@
 .searchContainer {
   width: 100%;
   display: flex;
+  gap: 10px;
 }
 
 .input {
@@ -53,7 +54,6 @@
   border-radius: 15px;
   text-transform: uppercase;
   color: #fff;
-  border: 0;
 }
 
 .ToDoList {
@@ -69,6 +69,7 @@
   border-radius: 15px;
   margin-bottom: 15px;
   display: flex;
+
   justify-content: space-between;
   &:last-child {
     margin-bottom: 0;
@@ -97,7 +98,21 @@
 .addContainer {
   display: flex;
   flex: 2 1 0%;
+  gap: 10px;
   > .button {
     flex: 1 1 0%;
+  }
+}
+
+.buttonSvg {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  background: $accent;
+  color: #fff;
+  > svg {
+    height: 100%;
+    width: 100%;
   }
 }

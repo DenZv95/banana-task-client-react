@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 
@@ -13,6 +13,8 @@ import FilterButtonPanel from '../../ui/FilterButtonPanel/FilterButtonPanel';
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
+  const [textTodo, setTextTodo] = useState('');
+
   let navigate = useNavigate();
   const { isAuth } = useAuth();
 
@@ -20,7 +22,7 @@ const Home = () => {
     navigate('/login');
   }
 
-  useQuery(
+  const { refetch } = useQuery(
     'get tasks',
     () =>
       $api({
@@ -30,6 +32,24 @@ const Home = () => {
       refetchOnWindowFocus: false,
       onSuccess(data) {
         setTodos(data);
+      },
+    }
+  );
+
+  const { mutate: create } = useMutation(
+    'Create',
+    () =>
+      $api({
+        url: '/tasks/create',
+        auth: false,
+        type: 'POST',
+        body: { name: textTodo },
+      }),
+    {
+      onSuccess(data) {
+        console.log(data);
+        refetch();
+        setTextTodo('');
       },
     }
   );
@@ -72,8 +92,23 @@ const Home = () => {
         </ul>
 
         <div className={styles.addContainer}>
-          <input type='text' placeholder='Todo' className={styles.input} />
-          <button className={styles.button}>Add</button>
+          <input
+            type='text'
+            placeholder='Todo'
+            className={styles.input}
+            value={textTodo}
+            onChange={(e) => {
+              setTextTodo(e.target.value);
+            }}
+          />
+          <button
+            className={styles.button}
+            onClick={() => {
+              create();
+            }}
+          >
+            Add
+          </button>
         </div>
       </div>
     </div>

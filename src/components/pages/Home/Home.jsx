@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import styles from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 
 import { ReactComponent as CheckImage } from '../../../images/check.svg';
 import { ReactComponent as TrashImage } from '../../../images/trash.svg';
-import { ReactComponent as SettingsImage } from '../../../images/settings.svg';
 import { ReactComponent as EditImage } from '../../../images/edit-2.svg';
+
 import FilterButtonPanel from '../../ui/FilterButtonPanel/FilterButtonPanel';
+import Settings from '../../ui/Settings/Settings';
 
 const Home = () => {
-  const [todos, setTodos] = useState([]);
+  const [todoList, setTodoList] = useState([]);
   const [textTodo, setTextTodo] = useState('');
 
   let navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { isAuth } = useAuth();
 
   if (!isAuth) {
     navigate('/login');
   }
 
-  const { refetch } = useQuery(
+  useQuery(
     'get tasks',
     () =>
       $api({
@@ -31,7 +33,7 @@ const Home = () => {
     {
       refetchOnWindowFocus: false,
       onSuccess(data) {
-        setTodos(data);
+        setTodoList(data);
       },
     }
   );
@@ -48,7 +50,7 @@ const Home = () => {
     {
       onSuccess(data) {
         console.log(data);
-        refetch();
+        queryClient.invalidateQueries('get tasks');
         setTextTodo('');
       },
     }
@@ -60,13 +62,11 @@ const Home = () => {
         <div className={styles.searchContainer}>
           <input placeholder='Search' className={styles.input} />
           <FilterButtonPanel />
-          <button className={styles.circleButton}>
-            <SettingsImage />
-          </button>
+          <Settings />
         </div>
 
         <ul className={styles.ToDoList}>
-          {todos.map((todo, id) => {
+          {todoList.map((todo, id) => {
             return (
               <li key={id} className={styles.ToDoItem}>
                 <div className={styles.todoDetails}>

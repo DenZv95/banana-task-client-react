@@ -69,17 +69,32 @@ const Home = () => {
     }
   );
 
+  const [filter, setFilter] = useState('all');
+
+  const itemFilter = (todos, filter) => {
+    switch (filter) {
+      case 'all':
+        return todos;
+      case 'active':
+        return todos.filter((item) => !item.complete);
+      case 'done':
+        return todos.filter((item) => item.complete);
+      default:
+        return todos;
+    }
+  };
+
   return (
     <div className={styles.limiter}>
       <div className={styles.container}>
         <div className={styles.searchContainer}>
           <input placeholder='Search' className={styles.input} />
-          <FilterButtonPanel />
+          <FilterButtonPanel filter={filter} setFilter={setFilter} />
           <Settings />
         </div>
 
         <ul className={styles.ToDoList}>
-          {todoList.map((todo) => {
+          {itemFilter(todoList, filter).map((todo) => {
             return (
               <li key={todo._id} className={styles.ToDoItem}>
                 <div className={styles.todoDetails}>

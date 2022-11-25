@@ -54,6 +54,21 @@ const Home = () => {
     }
   );
 
+  const { mutate: remove } = useMutation(
+    'remove',
+    (todoId) =>
+      $api({
+        url: '/tasks/delete',
+        type: 'DELETE',
+        body: { taskId: todoId },
+      }),
+    {
+      onSuccess(data) {
+        queryClient.invalidateQueries('get tasks');
+      },
+    }
+  );
+
   return (
     <div className={styles.limiter}>
       <div className={styles.container}>
@@ -76,7 +91,12 @@ const Home = () => {
                 </div>
 
                 <div className={styles.todoActions}>
-                  <button className={styles.buttonSvg}>
+                  <button
+                    className={styles.buttonSvg}
+                    onClick={() => {
+                      remove(todo._id);
+                    }}
+                  >
                     <TrashImage />
                   </button>
                   <button className={styles.buttonSvg}>

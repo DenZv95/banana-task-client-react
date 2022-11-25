@@ -43,13 +43,11 @@ const Home = () => {
     () =>
       $api({
         url: '/tasks/create',
-        auth: false,
         type: 'POST',
         body: { name: textTodo },
       }),
     {
       onSuccess(data) {
-        console.log(data);
         queryClient.invalidateQueries('get tasks');
         setTextTodo('');
       },
@@ -70,7 +68,7 @@ const Home = () => {
             return (
               <li key={todo._id} className={styles.ToDoItem}>
                 <div className={styles.todoDetails}>
-                  <CheckBox checked={todo.complete} />
+                  <CheckBox todoId={todo._id} checked={todo.complete} />
                   <div className={styles.todoTexts}>
                     <span> {todo.name}</span>
                     <span>{todo.createdAt}</span>

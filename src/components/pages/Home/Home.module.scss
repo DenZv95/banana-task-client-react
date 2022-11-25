@@ -74,10 +74,12 @@
 }
 
 .todoDetails {
+  width: 100%;
   align-items: center;
   display: flex;
   gap: 10px;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 .todoTexts {

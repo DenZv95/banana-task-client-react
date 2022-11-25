@@ -5,12 +5,12 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 
-import { ReactComponent as CheckImage } from '../../../images/check.svg';
 import { ReactComponent as TrashImage } from '../../../images/trash.svg';
 import { ReactComponent as EditImage } from '../../../images/edit-2.svg';
 
 import FilterButtonPanel from '../../ui/FilterButtonPanel/FilterButtonPanel';
 import Settings from '../../ui/Settings/Settings';
+import CheckBox from '../../ui/CheckBox/CheckBox';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
@@ -66,18 +66,17 @@ const Home = () => {
         </div>
 
         <ul className={styles.ToDoList}>
-          {todoList.map((todo, id) => {
+          {todoList.map((todo) => {
             return (
-              <li key={id} className={styles.ToDoItem}>
+              <li key={todo._id} className={styles.ToDoItem}>
                 <div className={styles.todoDetails}>
-                  <button className={styles.buttonSvg}>
-                    <CheckImage />
-                  </button>
+                  <CheckBox checked={todo.complete} />
                   <div className={styles.todoTexts}>
                     <span> {todo.name}</span>
                     <span>{todo.createdAt}</span>
                   </div>
                 </div>
+
                 <div className={styles.todoActions}>
                   <button className={styles.buttonSvg}>
                     <TrashImage />

@@ -7,16 +7,18 @@ import { useAuth } from '../../../hooks/useAuth';
 
 import { ReactComponent as TrashImage } from '../../../images/trash.svg';
 import { ReactComponent as EditImage } from '../../../images/edit-2.svg';
+import { ReactComponent as SettingsImage } from '../../../images/settings.svg';
 
 import FilterButtonPanel from '../../ui/FilterButtonPanel/FilterButtonPanel';
-import Settings from '../../ui/Settings/Settings';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import ModalEdit from '../../ui/ModalEdit/ModalEdit';
+import ModalSettings from '../../ui/ModalSettings/ModalSettings';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
   const [textTodo, setTextTodo] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [isOpenSettings, setIsOpenSettings] = useState(false);
 
   let navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -92,7 +94,14 @@ const Home = () => {
         <div className={styles.searchContainer}>
           <input placeholder='Search' className={styles.input} />
           <FilterButtonPanel filter={filter} setFilter={setFilter} />
-          <Settings />
+          <button
+            className={styles.circleButton}
+            onClick={() => {
+              setIsOpenSettings(true);
+            }}
+          >
+            <SettingsImage />
+          </button>
         </div>
 
         <ul className={styles.ToDoList}>
@@ -119,7 +128,7 @@ const Home = () => {
                   <button
                     className={styles.buttonSvg}
                     onClick={() => {
-                      setIsOpen(true);
+                      setIsOpenEdit(true);
                     }}
                   >
                     <EditImage />
@@ -150,7 +159,8 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalEdit isOpen={isOpenEdit} setIsOpen={setIsOpenEdit} />
+      <ModalSettings isOpen={isOpenSettings} setIsOpen={setIsOpenSettings} />
     </div>
   );
 };

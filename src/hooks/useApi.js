@@ -19,6 +19,25 @@ export const useApi = () => {
     }
   );
 
+  const updateTodo = useMutation(
+    'updateTodo',
+    (todo) =>
+      $api({
+        url: '/tasks/update',
+        type: 'PUT',
+        body: {
+          taskId: todo._id,
+          name: todo.name,
+          complete: todo.complete,
+        },
+      }),
+    {
+      onSuccess(data) {
+        queryClient.invalidateQueries('get tasks');
+      },
+    }
+  );
+
   const removeTodo = useMutation(
     'removeTodo',
     (todoId) =>
@@ -33,5 +52,5 @@ export const useApi = () => {
       },
     }
   );
-  return { removeTodo, createTodo };
+  return { removeTodo, createTodo, updateTodo };
 };

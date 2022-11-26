@@ -18,6 +18,7 @@ import { useApi } from '../../../hooks/useApi';
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
   const [textTodo, setTextTodo] = useState('');
+  const [todoItemEdit, setTodoItemEdit] = useState('');
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [isOpenSettings, setIsOpenSettings] = useState(false);
 
@@ -99,6 +100,7 @@ const Home = () => {
                   <button
                     className={styles.buttonSvg}
                     onClick={() => {
+                      setTodoItemEdit(todo);
                       setIsOpenEdit(true);
                     }}
                   >
@@ -131,7 +133,11 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <ModalEdit isOpen={isOpenEdit} setIsOpen={setIsOpenEdit} />
+      <ModalEdit
+        isOpen={isOpenEdit}
+        setIsOpen={setIsOpenEdit}
+        todoItem={todoItemEdit}
+      />
       <ModalSettings isOpen={isOpenSettings} setIsOpen={setIsOpenSettings} />
     </div>
   );

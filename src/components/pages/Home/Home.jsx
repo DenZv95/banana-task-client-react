@@ -11,10 +11,12 @@ import { ReactComponent as EditImage } from '../../../images/edit-2.svg';
 import FilterButtonPanel from '../../ui/FilterButtonPanel/FilterButtonPanel';
 import Settings from '../../ui/Settings/Settings';
 import CheckBox from '../../ui/CheckBox/CheckBox';
+import ModalEdit from '../../ui/ModalEdit/ModalEdit';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
   const [textTodo, setTextTodo] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   let navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -114,7 +116,12 @@ const Home = () => {
                   >
                     <TrashImage />
                   </button>
-                  <button className={styles.buttonSvg}>
+                  <button
+                    className={styles.buttonSvg}
+                    onClick={() => {
+                      setIsOpen(true);
+                    }}
+                  >
                     <EditImage />
                   </button>
                 </div>
@@ -143,6 +150,7 @@ const Home = () => {
           </button>
         </div>
       </div>
+      <ModalEdit title={'aaa'} isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

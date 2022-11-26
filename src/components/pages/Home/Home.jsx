@@ -150,7 +150,7 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <ModalEdit title={'aaa'} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 
@@ -13,6 +13,7 @@ import FilterButtonPanel from '../../ui/FilterButtonPanel/FilterButtonPanel';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import ModalEdit from '../../ui/ModalEdit/ModalEdit';
 import ModalSettings from '../../ui/ModalSettings/ModalSettings';
+import { useApi } from '../../../hooks/useApi';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
@@ -21,8 +22,9 @@ const Home = () => {
   const [isOpenSettings, setIsOpenSettings] = useState(false);
 
   let navigate = useNavigate();
-  const queryClient = useQueryClient();
+
   const { isAuth } = useAuth();
+  const { removeTodo, createTodo } = useApi();
 
   if (!isAuth) {
     navigate('/login');
@@ -38,37 +40,6 @@ const Home = () => {
       refetchOnWindowFocus: false,
       onSuccess(data) {
         setTodoList(data);
-      },
-    }
-  );
-
-  const { mutate: create } = useMutation(
-    'Create',
-    () =>
-      $api({
-        url: '/tasks/create',
-        type: 'POST',
-        body: { name: textTodo },
-      }),
-    {
-      onSuccess(data) {
-        queryClient.invalidateQueries('get tasks');
-        setTextTodo('');
-      },
-    }
-  );
-
-  const { mutate: remove } = useMutation(
-    'remove',
-    (todoId) =>
-      $api({
-        url: '/tasks/delete',
-        type: 'DELETE',
-        body: { taskId: todoId },
-      }),
-    {
-      onSuccess(data) {
-        queryClient.invalidateQueries('get tasks');
       },
     }
   );
@@ -120,7 +91,7 @@ const Home = () => {
                   <button
                     className={styles.buttonSvg}
                     onClick={() => {
-                      remove(todo._id);
+                      removeTodo.mutate(todo._id);
                     }}
                   >
                     <TrashImage />
@@ -152,7 +123,8 @@ const Home = () => {
           <button
             className={styles.button}
             onClick={() => {
-              create();
+              createTodo.mutate(textTodo);
+              setTextTodo('');
             }}
           >
             Add

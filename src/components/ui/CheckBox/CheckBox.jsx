@@ -2,10 +2,11 @@ import styles from './CheckBox.module.scss';
 import { ReactComponent as CheckImage } from '../../../images/check.svg';
 import { useMutation, useQueryClient } from 'react-query';
 import { $api } from '../../../api/Api';
+import Button from '../Button/Button';
 
 const CheckBox = ({ todoId, checked = false }) => {
   const queryClient = useQueryClient();
-
+  const classButton = checked ? styles.done : styles.unDone;
   const { mutate: update, reset } = useMutation(
     'Done',
     () =>
@@ -25,15 +26,15 @@ const CheckBox = ({ todoId, checked = false }) => {
   );
 
   return (
-    <button
-      className={`${styles.buttonSvg} ${checked ? styles.done : styles.unDone}`}
+    <Button
       onClick={() => {
         update();
         reset();
       }}
+      className={`${styles.buttonSvg} ${classButton}`}
     >
       <CheckImage />
-    </button>
+    </Button>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import Button from '../Button/Button';
 import styles from './FilterButtonPanel.module.scss';
 
 const FilterButtonPanel = ({ filter, setFilter }) => {
@@ -12,7 +12,7 @@ const FilterButtonPanel = ({ filter, setFilter }) => {
     const isActive = filter === button.name;
     const classButton = isActive ? styles.buttonActive : styles.buttonNotActive;
     return (
-      <button
+      <Button
         key={button.name}
         className={`${styles.button} ${classButton}`}
         onClick={() => {
@@ -20,7 +20,7 @@ const FilterButtonPanel = ({ filter, setFilter }) => {
         }}
       >
         {button.label}
-      </button>
+      </Button>
     );
   });
   return <div className={styles.container}>{buttons}</div>;

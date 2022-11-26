@@ -1,5 +1,6 @@
 import styles from './Modal.module.scss';
 import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 
 const Modal = ({
   isOpen,
@@ -17,18 +18,14 @@ const Modal = ({
           <div className={styles.modalWindow}>
             <div className={styles.modalHeader}>
               <div className={styles.modalTitle}>{title}</div>
-              <button onClick={onCancel}>X</button>
+              <Button onClick={onCancel}>X</Button>
             </div>
 
             <div className={styles.modalBody}>{children}</div>
 
             <div className={styles.modalFooter}>
-              <button className={styles.button} onClick={onCancel}>
-                {titleCancel}
-              </button>
-              <button className={styles.button} onClick={onSubmit}>
-                {titleSubmit}
-              </button>
+              <Button onClick={onCancel}>{titleCancel}</Button>
+              <Button onClick={onSubmit}>{titleSubmit}</Button>
             </div>
           </div>
         </div>

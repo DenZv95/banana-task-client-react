@@ -3,6 +3,7 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
+import Button from '../../ui/Button/Button';
 import styles from './Auth.module.scss';
 
 const Auth = () => {
@@ -23,11 +24,7 @@ const Auth = () => {
     navigate('/');
   };
 
-  const {
-    mutate: auth,
-    isLoading: isLoadingAuth,
-    error: errorAuth,
-  } = useMutation(
+  const { mutate: auth } = useMutation(
     'Auth',
     () =>
       $api({
@@ -43,11 +40,7 @@ const Auth = () => {
     }
   );
 
-  const {
-    mutate: register,
-    isLoading,
-    error,
-  } = useMutation(
+  const { mutate: register } = useMutation(
     'Registration',
     () =>
       $api({
@@ -100,9 +93,8 @@ const Auth = () => {
               setPassword(e.target.value);
             }}
           />
-          <button className={styles.button}>
-            {type === 'auth' ? 'Sign In' : 'Sign Up'}
-          </button>
+
+          <Button>{type === 'auth' ? 'Sign In' : 'Sign Up'}</Button>
         </form>
         <div className={styles.fluterText}>
           <span className='text1'>Don't have an account?</span>

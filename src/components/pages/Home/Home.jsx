@@ -14,6 +14,7 @@ import CheckBox from '../../ui/CheckBox/CheckBox';
 import ModalEdit from '../../ui/ModalEdit/ModalEdit';
 import ModalSettings from '../../ui/ModalSettings/ModalSettings';
 import { useApi } from '../../../hooks/useApi';
+import Button from '../../ui/Button/Button';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
@@ -66,14 +67,14 @@ const Home = () => {
         <div className={styles.searchContainer}>
           <input placeholder='Search' className={styles.input} />
           <FilterButtonPanel filter={filter} setFilter={setFilter} />
-          <button
-            className={styles.circleButton}
+
+          <Button
             onClick={() => {
               setIsOpenSettings(true);
             }}
           >
             <SettingsImage />
-          </button>
+          </Button>
         </div>
 
         <ul className={styles.ToDoList}>
@@ -89,23 +90,24 @@ const Home = () => {
                 </div>
 
                 <div className={styles.todoActions}>
-                  <button
+                  <Button
                     className={styles.buttonSvg}
                     onClick={() => {
                       removeTodo.mutate(todo._id);
                     }}
                   >
                     <TrashImage />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     className={styles.buttonSvg}
                     onClick={() => {
                       setTodoItemEdit(todo);
                       setIsOpenEdit(true);
                     }}
                   >
+                    {' '}
                     <EditImage />
-                  </button>
+                  </Button>
                 </div>
               </li>
             );
@@ -122,15 +124,15 @@ const Home = () => {
               setTextTodo(e.target.value);
             }}
           />
-          <button
-            className={styles.button}
+
+          <Button
             onClick={() => {
               createTodo.mutate(textTodo);
               setTextTodo('');
             }}
           >
             Add
-          </button>
+          </Button>
         </div>
       </div>
       <ModalEdit

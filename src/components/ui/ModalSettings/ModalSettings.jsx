@@ -2,6 +2,7 @@ import styles from './ModalSettings.module.scss';
 import PropTypes from 'prop-types';
 import Modal from '../Modal/Modal';
 import { useAuth } from '../../../hooks/useAuth';
+import Button from '../Button/Button';
 
 const ModalSettings = ({ isOpen, setIsOpen }) => {
   const { setIsAuth } = useAuth();
@@ -22,7 +23,8 @@ const ModalSettings = ({ isOpen, setIsOpen }) => {
         <input type='text' className={styles.input} />
         <input type='text' className={styles.input} />
         <input type='text' className={styles.input} />
-        <button onClick={handleLogout}>Logout</button>
+
+        <Button onClick={handleLogout}>Logout</Button>
       </form>
     </Modal>
   );

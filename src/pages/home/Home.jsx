@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { $api } from '@/api/Api';
 
-import CheckBox from '@/components/features/todo/CheckBox/CheckBox';
-import FilterButtonPanel from '@/components/features/todo/FilterButtonPanel/FilterButtonPanel';
-import ModalEdit from '@/components/form/ModalEdit/ModalEdit';
-import ModalSettings from '@/components/form/ModalSettings/ModalSettings';
-import Button from '@/components/ui/Button/Button';
-import Input from '@/components/ui/Input/Input';
+import CheckBox from '@/components/features/todo/checkBox/CheckBox';
+import FilterButtonPanel from '@/components/features/todo/filterButtonPanel/FilterButtonPanel';
+import ModalEdit from '@/components/form/modalEdit/ModalEdit';
+import ModalSettings from '@/components/form/modalSettings/ModalSettings';
+import Button from '@/components/ui/button/Button';
+import Input from '@/components/ui/input/Input';
 
 import { useApi } from '@/hooks/useApi';
 import { useAuth } from '@/hooks/useAuth';

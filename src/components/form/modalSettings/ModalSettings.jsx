@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import Button from '@/components/ui/Button/Button';
-import Input from '@/components/ui/Input/Input';
-import Modal from '@/components/ui/Modal/Modal';
+import Button from '@/components/ui/button/Button';
+import Input from '@/components/ui/input/Input';
+import Modal from '@/components/ui/modal/Modal';
 
 import { useAuth } from '@/hooks/useAuth';
 

@@ -1,4 +1,4 @@
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/ui/button/Button';
 
 import { useApi } from '@/hooks/useApi';
 

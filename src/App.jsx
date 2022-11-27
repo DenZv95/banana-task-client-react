@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Route, Routes } from 'react-router-dom';
 
 import { AuthContext } from './contexts/AuthContext';
-import Auth from './pages/Auth/Auth';
-import Home from './pages/Home/Home';
+import Auth from './pages/auth/Auth';
+import Home from './pages/home/Home';
 
 const queryClient = new QueryClient();
 

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { $api } from '@/api/Api';
 
-import Button from '@/components/ui/Button/Button';
-import Input from '@/components/ui/Input/Input';
+import Button from '@/components/ui/button/Button';
+import Input from '@/components/ui/input/Input';
 
 import { useAuth } from '@/hooks/useAuth';
 

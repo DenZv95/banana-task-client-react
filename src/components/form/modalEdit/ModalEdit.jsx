@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
-import Input from '@/components/ui/Input/Input';
-import Modal from '@/components/ui/Modal/Modal';
+import Input from '@/components/ui/input/Input';
+import Modal from '@/components/ui/modal/Modal';
 
 import { useApi } from '@/hooks/useApi';
 

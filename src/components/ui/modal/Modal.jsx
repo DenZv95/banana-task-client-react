@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import Button from '../Button/Button';
+import Button from '../button/Button';
 
 import styles from './Modal.module.scss';
 

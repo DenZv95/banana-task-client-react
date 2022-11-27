@@ -1,4 +1,4 @@
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/ui/button/Button';
 
 import styles from './FilterButtonPanel.module.scss';
 

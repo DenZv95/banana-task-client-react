@@ -15,6 +15,7 @@ import ModalEdit from '../../ui/ModalEdit/ModalEdit';
 import ModalSettings from '../../ui/ModalSettings/ModalSettings';
 import { useApi } from '../../../hooks/useApi';
 import Button from '../../ui/Button/Button';
+import Input from '../../ui/Input/Input';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
@@ -65,7 +66,8 @@ const Home = () => {
     <div className={styles.limiter}>
       <div className={styles.container}>
         <div className={styles.searchContainer}>
-          <input placeholder='Search' className={styles.input} />
+          <Input placeholder='Search' className={styles.input} />
+
           <FilterButtonPanel filter={filter} setFilter={setFilter} />
 
           <Button
@@ -115,16 +117,15 @@ const Home = () => {
         </ul>
 
         <div className={styles.addContainer}>
-          <input
+          <Input
             type='text'
-            placeholder='Todo'
+            placeholder='Todo text...'
             className={styles.input}
             value={textTodo}
             onChange={(e) => {
               setTextTodo(e.target.value);
             }}
           />
-
           <Button
             onClick={() => {
               createTodo.mutate(textTodo);

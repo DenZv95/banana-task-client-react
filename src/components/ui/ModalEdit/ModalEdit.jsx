@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal/Modal';
 import { useEffect, useState } from 'react';
 import { useApi } from '../../../hooks/useApi';
+import Input from '../Input/Input';
 
 const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
   const [text, setText] = useState('');
@@ -31,10 +32,9 @@ const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
       titleSubmit='Edit'
     >
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           placeholder='Email'
           type='text'
-          className={styles.input}
           value={text}
           onChange={(e) => {
             setText(e.target.value);

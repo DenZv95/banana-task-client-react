@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { $api } from '../../../api/Api';
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../ui/Button/Button';
+import Input from '../../ui/Input/Input';
 import styles from './Auth.module.scss';
 
 const Auth = () => {
@@ -75,23 +76,24 @@ const Auth = () => {
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <input
+          <Input
             placeholder='Email'
             type='email'
             value={email}
-            className={styles.input}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            required
           />
-          <input
+
+          <Input
             placeholder='Password'
             type='password'
             value={password}
-            className={styles.input}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            required
           />
 
           <Button>{type === 'auth' ? 'Sign In' : 'Sign Up'}</Button>

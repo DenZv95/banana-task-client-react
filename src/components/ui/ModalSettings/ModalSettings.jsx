@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal/Modal';
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 
 const ModalSettings = ({ isOpen, setIsOpen }) => {
   const { setIsAuth } = useAuth();
@@ -20,9 +21,9 @@ const ModalSettings = ({ isOpen, setIsOpen }) => {
       titleSubmit='Edit'
     >
       <form>
-        <input type='text' className={styles.input} />
-        <input type='text' className={styles.input} />
-        <input type='text' className={styles.input} />
+        <Input type='text' placeholder='email' />
+        <Input type='text' placeholder='Password' />
+        <Input type='text' placeholder='Password' />
 
         <Button onClick={handleLogout}>Logout</Button>
       </form>

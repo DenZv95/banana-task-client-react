@@ -1,0 +1,47 @@
+.ToDoItem {
+  width: 100%;
+  height: 50px;
+  background: #ebebeb;
+  color: #8e8c8c;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.todoDetails {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.todoTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.todoActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttonSvg {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  > svg {
+    height: 100%;
+    width: 100%;
+  }
+}

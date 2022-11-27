@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { $api } from '@/api/Api';
 
-import CheckBox from '@/components/features/todo/checkBox/CheckBox';
 import FilterButtonPanel from '@/components/features/todo/filterButtonPanel/FilterButtonPanel';
+import ItemTodo from '@/components/features/todo/itemTodo/ItemTodo';
 import ModalEdit from '@/components/form/modalEdit/ModalEdit';
 import ModalSettings from '@/components/form/modalSettings/ModalSettings';
 import Button from '@/components/ui/button/Button';
@@ -14,9 +14,7 @@ import Input from '@/components/ui/input/Input';
 import { useApi } from '@/hooks/useApi';
 import { useAuth } from '@/hooks/useAuth';
 
-import { ReactComponent as EditImage } from '@/images/edit-2.svg';
 import { ReactComponent as SettingsImage } from '@/images/settings.svg';
-import { ReactComponent as TrashImage } from '@/images/trash.svg';
 
 import styles from './Home.module.scss';
 
@@ -28,9 +26,8 @@ const Home = () => {
   const [isOpenSettings, setIsOpenSettings] = useState(false);
 
   let navigate = useNavigate();
-
   const { isAuth } = useAuth();
-  const { removeTodo, createTodo } = useApi();
+  const { createTodo } = useApi();
 
   if (!isAuth) {
     navigate('/login');
@@ -85,36 +82,12 @@ const Home = () => {
         <ul className={styles.ToDoList}>
           {itemFilter(todoList, filter).map((todo) => {
             return (
-              <li key={todo._id} className={styles.ToDoItem}>
-                <div className={styles.todoDetails}>
-                  <CheckBox todoId={todo._id} checked={todo.complete} />
-                  <div className={styles.todoTexts}>
-                    <span> {todo.name}</span>
-                    <span>{todo.createdAt}</span>
-                  </div>
-                </div>
-
-                <div className={styles.todoActions}>
-                  <Button
-                    className={styles.buttonSvg}
-                    onClick={() => {
-                      removeTodo.mutate(todo._id);
-                    }}
-                  >
-                    <TrashImage />
-                  </Button>
-                  <Button
-                    className={styles.buttonSvg}
-                    onClick={() => {
-                      setTodoItemEdit(todo);
-                      setIsOpenEdit(true);
-                    }}
-                  >
-                    {' '}
-                    <EditImage />
-                  </Button>
-                </div>
-              </li>
+              <ItemTodo
+                key={todo._id}
+                item={todo}
+                setIsOpenEdit={setIsOpenEdit}
+                setTodoItemEdit={setTodoItemEdit}
+              />
             );
           })}
         </ul>

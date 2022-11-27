@@ -4,6 +4,10 @@ import { $api } from '../api/Api';
 export const useApi = () => {
   const queryClient = useQueryClient();
 
+  const invalidateGetTodo = () => {
+    queryClient.invalidateQueries('get tasks');
+  };
+
   const createTodo = useMutation(
     'createTodo',
     (textTodo) =>
@@ -14,7 +18,7 @@ export const useApi = () => {
       }),
     {
       onSuccess(data) {
-        queryClient.invalidateQueries('get tasks');
+        invalidateGetTodo();
       },
     }
   );
@@ -33,7 +37,7 @@ export const useApi = () => {
       }),
     {
       onSuccess(data) {
-        queryClient.invalidateQueries('get tasks');
+        invalidateGetTodo();
       },
     }
   );
@@ -48,9 +52,25 @@ export const useApi = () => {
       }),
     {
       onSuccess(data) {
-        queryClient.invalidateQueries('get tasks');
+        invalidateGetTodo();
       },
     }
   );
-  return { removeTodo, createTodo, updateTodo };
+
+  const completeTodo = useMutation(
+    'completeTodo',
+    (todoBody) =>
+      $api({
+        url: '/tasks/update',
+        type: 'PUT',
+        body: todoBody,
+      }),
+    {
+      onSuccess(data) {
+        invalidateGetTodo();
+      },
+    }
+  );
+
+  return { removeTodo, createTodo, updateTodo, completeTodo };
 };

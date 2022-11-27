@@ -1,6 +1,8 @@
-import styles from './Modal.module.scss';
 import PropTypes from 'prop-types';
+
 import Button from '../Button/Button';
+
+import styles from './Modal.module.scss';
 
 const Modal = ({
   isOpen,

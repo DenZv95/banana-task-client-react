@@ -1,9 +1,12 @@
-import styles from './ModalEdit.module.scss';
 import PropTypes from 'prop-types';
-import Modal from '../../ui/Modal/Modal';
 import { useEffect, useState } from 'react';
-import { useApi } from '../../../hooks/useApi';
-import Input from '../../ui/Input/Input';
+
+import Input from '@/components/ui/Input/Input';
+import Modal from '@/components/ui/Modal/Modal';
+
+import { useApi } from '@/hooks/useApi';
+
+import styles from './ModalEdit.module.scss';
 
 const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
   const [text, setText] = useState('');

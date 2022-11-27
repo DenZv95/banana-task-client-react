@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { $api } from '../api/Api';
+
+import { $api } from '@/api/Api';
 
 export const useApi = () => {
   const queryClient = useQueryClient();

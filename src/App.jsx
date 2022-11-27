@@ -1,8 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Route, Routes } from 'react-router-dom';
+
 import { AuthContext } from './contexts/AuthContext';
-import { useState } from 'react';
 import Auth from './pages/Auth/Auth';
 import Home from './pages/Home/Home';
 

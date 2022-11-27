@@ -1,9 +1,12 @@
-import styles from './ModalSettings.module.scss';
 import PropTypes from 'prop-types';
-import Modal from '../../ui/Modal/Modal';
-import { useAuth } from '../../../hooks/useAuth';
-import Button from '../../ui/Button/Button';
-import Input from '../../ui/Input/Input';
+
+import Button from '@/components/ui/Button/Button';
+import Input from '@/components/ui/Input/Input';
+import Modal from '@/components/ui/Modal/Modal';
+
+import { useAuth } from '@/hooks/useAuth';
+
+import styles from './ModalSettings.module.scss';
 
 const ModalSettings = ({ isOpen, setIsOpen }) => {
   const { setIsAuth } = useAuth();
@@ -20,7 +23,7 @@ const ModalSettings = ({ isOpen, setIsOpen }) => {
       }}
       titleSubmit='Edit'
     >
-      <form>
+      <form className={styles.settingsForm}>
         <Input type='text' placeholder='email' />
         <Input type='text' placeholder='Password' />
         <Input type='text' placeholder='Password' />

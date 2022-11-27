@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { $api } from '../../api/Api';
-import { useAuth } from '../../hooks/useAuth';
-import Button from '../../components/ui/Button/Button';
-import Input from '../../components/ui/Input/Input';
+
+import { $api } from '@/api/Api';
+
+import Button from '@/components/ui/Button/Button';
+import Input from '@/components/ui/Input/Input';
+
+import { useAuth } from '@/hooks/useAuth';
+
 import styles from './Auth.module.scss';
 
 const Auth = () => {

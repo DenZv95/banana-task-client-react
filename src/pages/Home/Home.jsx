@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import styles from './Home.module.scss';
-import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { $api } from '../../api/Api';
-import { useAuth } from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as TrashImage } from '../../images/trash.svg';
-import { ReactComponent as EditImage } from '../../images/edit-2.svg';
-import { ReactComponent as SettingsImage } from '../../images/settings.svg';
+import { $api } from '@/api/Api';
 
-import ModalSettings from '../../components/form/ModalSettings/ModalSettings';
-import { useApi } from '../../hooks/useApi';
-import Button from '../../components/ui/Button/Button';
-import Input from '../../components/ui/Input/Input';
+import ModalEdit from '@/components/form/ModalEdit/ModalEdit';
+import ModalSettings from '@/components/form/ModalSettings/ModalSettings';
+import Button from '@/components/ui/Button/Button';
+import Input from '@/components/ui/Input/Input';
 
-import ModalEdit from '../../components/form/ModalEdit/ModalEdit';
-import CheckBox from '../../features/todo/components/CheckBox/CheckBox';
-import FilterButtonPanel from '../../features/todo/components/FilterButtonPanel/FilterButtonPanel';
+import CheckBox from '@/features/todo/components/CheckBox/CheckBox';
+import FilterButtonPanel from '@/features/todo/components/FilterButtonPanel/FilterButtonPanel';
+
+import { useApi } from '@/hooks/useApi';
+import { useAuth } from '@/hooks/useAuth';
+
+import { ReactComponent as EditImage } from '@/images/edit-2.svg';
+import { ReactComponent as SettingsImage } from '@/images/settings.svg';
+import { ReactComponent as TrashImage } from '@/images/trash.svg';
+
+import styles from './Home.module.scss';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);

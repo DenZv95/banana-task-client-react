@@ -3,8 +3,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { AuthContext } from './contexts/AuthContext';
 import { useState } from 'react';
-import Auth from './components/pages/Auth/Auth';
-import Home from './components/pages/Home/Home';
+import Auth from './pages/Auth/Auth';
+import Home from './pages/Home/Home';
 
 const queryClient = new QueryClient();
 

@@ -1,8 +1,8 @@
 import styles from './CheckBox.module.scss';
-import { ReactComponent as CheckImage } from '../../../images/check.svg';
+import { ReactComponent as CheckImage } from '../../../../images/check.svg';
 
-import Button from '../Button/Button';
-import { useApi } from '../../../hooks/useApi';
+import { useApi } from '../../../../hooks/useApi';
+import Button from '../../../../components/ui/Button/Button';
 
 const CheckBox = ({ todoId, checked = false }) => {
   const { completeTodo } = useApi();

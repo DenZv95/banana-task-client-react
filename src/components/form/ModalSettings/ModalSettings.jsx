@@ -1,9 +1,9 @@
 import styles from './ModalSettings.module.scss';
 import PropTypes from 'prop-types';
-import Modal from '../Modal/Modal';
+import Modal from '../../ui/Modal/Modal';
 import { useAuth } from '../../../hooks/useAuth';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
+import Button from '../../ui/Button/Button';
+import Input from '../../ui/Input/Input';
 
 const ModalSettings = ({ isOpen, setIsOpen }) => {
   const { setIsAuth } = useAuth();

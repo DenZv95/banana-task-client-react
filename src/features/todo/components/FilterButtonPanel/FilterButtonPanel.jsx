@@ -1,4 +1,4 @@
-import Button from '../Button/Button';
+import Button from '../../../../components/ui/Button/Button';
 import styles from './FilterButtonPanel.module.scss';
 
 const FilterButtonPanel = ({ filter, setFilter }) => {

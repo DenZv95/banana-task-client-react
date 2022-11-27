@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import Button from '@/components/ui/button/Button';
 
 import { useApi } from '@/hooks/useApi';
@@ -7,7 +5,7 @@ import { useApi } from '@/hooks/useApi';
 import { ReactComponent as EditImage } from '@/images/edit-2.svg';
 import { ReactComponent as TrashImage } from '@/images/trash.svg';
 
-import CheckBox from '../checkBox/CheckBox';
+import CheckBox from '../../../form/checkBox/CheckBox';
 
 import styles from './ItemTodo.module.scss';
 

@@ -6,12 +6,12 @@ import { $api } from '@/api/Api';
 
 import FilterButtonPanel from '@/components/features/todo/filterButtonPanel/FilterButtonPanel';
 import ItemTodo from '@/components/features/todo/itemTodo/ItemTodo';
+import AddTodoForm from '@/components/form/addTodoForm/AddTodoForm';
 import ModalEdit from '@/components/form/modalEdit/ModalEdit';
 import ModalSettings from '@/components/form/modalSettings/ModalSettings';
 import Button from '@/components/ui/button/Button';
 import Input from '@/components/ui/input/Input';
 
-import { useApi } from '@/hooks/useApi';
 import { useAuth } from '@/hooks/useAuth';
 
 import { ReactComponent as SettingsImage } from '@/images/settings.svg';
@@ -20,14 +20,13 @@ import styles from './Home.module.scss';
 
 const Home = () => {
   const [todoList, setTodoList] = useState([]);
-  const [textTodo, setTextTodo] = useState('');
+
   const [todoItemEdit, setTodoItemEdit] = useState('');
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [isOpenSettings, setIsOpenSettings] = useState(false);
 
   let navigate = useNavigate();
   const { isAuth } = useAuth();
-  const { createTodo } = useApi();
 
   if (!isAuth) {
     navigate('/login');
@@ -92,25 +91,7 @@ const Home = () => {
           })}
         </ul>
 
-        <div className={styles.addContainer}>
-          <Input
-            type='text'
-            placeholder='Todo text...'
-            className={styles.input}
-            value={textTodo}
-            onChange={(e) => {
-              setTextTodo(e.target.value);
-            }}
-          />
-          <Button
-            onClick={() => {
-              createTodo.mutate(textTodo);
-              setTextTodo('');
-            }}
-          >
-            Add
-          </Button>
-        </div>
+        <AddTodoForm />
       </div>
       <ModalEdit
         isOpen={isOpenEdit}

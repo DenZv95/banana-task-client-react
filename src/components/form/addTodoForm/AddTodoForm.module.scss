@@ -1,0 +1,11 @@
+.addContainer {
+  display: flex;
+  flex: 2 1 0%;
+  gap: 10px;
+  > input {
+    flex: 2 1 0%;
+  }
+  > button {
+    flex: 1 1 0%;
+  }
+}

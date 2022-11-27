@@ -20,7 +20,9 @@ const Modal = ({
           <div className={styles.modalWindow}>
             <div className={styles.modalHeader}>
               <div className={styles.modalTitle}>{title}</div>
-              <Button onClick={onCancel}>X</Button>
+              <Button onClick={onCancel} className={styles.modalClose}>
+                X
+              </Button>
             </div>
 
             <div className={styles.modalBody}>{children}</div>

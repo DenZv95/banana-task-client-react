@@ -19,7 +19,7 @@ const CheckBox = ({ todoId, checked = false }) => {
           complete: !checked,
         });
       }}
-      className={`${styles.buttonSvg} ${classButton}`}
+      className={`${styles.checkBox} ${classButton}`}
     >
       <CheckImage />
     </Button>

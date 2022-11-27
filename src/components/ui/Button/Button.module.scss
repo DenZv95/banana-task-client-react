@@ -8,12 +8,14 @@
   border-radius: 15px;
   text-transform: uppercase;
   color: #fff;
+  cursor: pointer;
 
   &:hover {
     background-color: $hover;
   }
 
   &[disabled] {
+    background-color: $disabled;
     opacity: 0.5;
     cursor: not-allowed;
   }

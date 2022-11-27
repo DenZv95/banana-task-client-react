@@ -1,6 +1,6 @@
 @import '../../../../scss/variables';
 
-.buttonSvg {
+.checkBox {
   height: 30px;
   width: 30px;
   padding: 5px;
@@ -10,12 +10,11 @@
     height: 100%;
     width: 100%;
   }
-}
+  &.done {
+    background: $accent;
+  }
 
-.done {
-  background: $accent;
-}
-
-.unDone {
-  background: rgb(191, 191, 191);
+  &.unDone {
+    background: $disabled;
+  }
 }

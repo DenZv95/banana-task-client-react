@@ -61,11 +61,32 @@ const Home = () => {
     }
   };
 
+  const [filterSearch, setFilterSearch] = useState('');
+
+  const itemSearch = (todos, filter) => {
+    console.log(todos.name);
+    if (filter.length < 1) {
+      return todos;
+    }
+
+    return todos.filter((todo) => {
+      return todo.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+    });
+  };
+
+  const data = itemSearch(itemFilter(todoList, filter), filterSearch);
   return (
     <div className={styles.limiter}>
       <div className={styles.container}>
         <div className={styles.searchContainer}>
-          <Input placeholder='Search' className={styles.input} />
+          <Input
+            placeholder='Search'
+            className={styles.input}
+            value={filterSearch}
+            onChange={(e) => {
+              setFilterSearch(e.target.value);
+            }}
+          />
 
           <FilterButtonPanel filter={filter} setFilter={setFilter} />
 
@@ -79,7 +100,7 @@ const Home = () => {
         </div>
 
         <ul className={styles.ToDoList}>
-          {itemFilter(todoList, filter).map((todo) => {
+          {data.map((todo) => {
             return (
               <ItemTodo
                 key={todo._id}

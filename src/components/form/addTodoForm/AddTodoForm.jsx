@@ -10,8 +10,17 @@ import styles from './AddTodoForm.module.scss';
 const AddTodoForm = () => {
   const [textTodo, setTextTodo] = useState('');
   const { createTodo } = useApi();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (textTodo !== '') {
+      createTodo.mutate(textTodo);
+      setTextTodo('');
+    }
+  };
+
   return (
-    <div className={styles.addContainer}>
+    <form onSubmit={handleSubmit} className={styles.addContainer}>
       <Input
         type='text'
         placeholder='Todo text...'
@@ -21,15 +30,8 @@ const AddTodoForm = () => {
           setTextTodo(e.target.value);
         }}
       />
-      <Button
-        onClick={() => {
-          createTodo.mutate(textTodo);
-          setTextTodo('');
-        }}
-      >
-        Add
-      </Button>
-    </div>
+      <Button>Add</Button>
+    </form>
   );
 };
 

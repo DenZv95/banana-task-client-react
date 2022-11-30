@@ -1,12 +1,13 @@
 @import '../../../scss/variables';
 
 .modalOverlay {
-  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modalWindow {
@@ -14,12 +15,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  min-height: 200px;
   width: 500px;
+  min-height: 200px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  background-color: #fff;
   padding: 35px;
   border-radius: 25px;
 }
@@ -32,11 +35,12 @@
 
 .modalHeader {
   min-height: 60px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
   align-items: center;
+  box-sizing: border-box;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .modalTitle {

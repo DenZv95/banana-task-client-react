@@ -1,11 +1,19 @@
 @import '../../../scss/variables';
 
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .status {
-  background-color: $accent;
-  padding: 0 20px;
   width: 100%;
   height: 50px;
-  text-transform: uppercase;
+
+  background-color: $accent;
   color: #fff;
+  text-transform: uppercase;
+
   border-radius: 15px;
+  padding: 0 20px;
 }

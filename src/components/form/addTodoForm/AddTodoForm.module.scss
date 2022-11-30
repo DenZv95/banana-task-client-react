@@ -1,11 +1,12 @@
 .addContainer {
   display: flex;
+  flex-wrap: wrap;
   flex: 2 1 0%;
   gap: 10px;
   > input {
-    flex: 2 1 0%;
+    flex: 2 1 120px;
   }
   > button {
-    flex: 1 1 0%;
+    flex: 1 0 60px;
   }
 }

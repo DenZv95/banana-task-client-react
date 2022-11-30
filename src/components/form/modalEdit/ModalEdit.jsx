@@ -34,7 +34,7 @@ const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
       onSubmit={handleSubmit}
       titleSubmit='Edit'
     >
-      <form onSubmit={handleSubmit}>
+      <form className={styles.editForm} onSubmit={handleSubmit}>
         <Input
           placeholder='Email'
           type='text'

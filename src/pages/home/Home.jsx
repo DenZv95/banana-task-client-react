@@ -87,16 +87,18 @@ const Home = () => {
               setFilterSearch(e.target.value);
             }}
           />
-
-          <FilterButtonPanel filter={filter} setFilter={setFilter} />
-
-          <Button
-            onClick={() => {
-              setIsOpenSettings(true);
-            }}
-          >
-            <SettingsImage />
-          </Button>
+          <div className={styles.buttonGroup}>
+            <FilterButtonPanel filter={filter} setFilter={setFilter} />
+            <div className={styles.settingsButton}>
+              <Button
+                onClick={() => {
+                  setIsOpenSettings(true);
+                }}
+              >
+                <SettingsImage />
+              </Button>
+            </div>
+          </div>
         </div>
 
         <ul className={styles.ToDoList}>

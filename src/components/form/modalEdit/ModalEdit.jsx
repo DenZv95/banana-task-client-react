@@ -38,7 +38,7 @@ const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
         <Input
           placeholder='Email'
           type='text'
-          value={text}
+          value={text || ''}
           onChange={(e) => {
             setText(e.target.value);
           }}

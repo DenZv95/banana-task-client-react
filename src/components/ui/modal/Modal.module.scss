@@ -1,40 +1,59 @@
 @import '../../../scss/variables';
 
 .modalOverlay {
+  isolation: isolate;
   position: fixed;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 
   background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+  padding: 30px;
+  @media (max-height: 480px) {
+    padding: 5px;
+    justify-content: flex-start;
+  }
 }
 
 .modalWindow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  min-height: 200px;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
+  gap: 15px;
+  background: whitesmoke;
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  max-height: 450px;
   background-color: #fff;
   padding: 35px;
   border-radius: 25px;
-}
 
-.modalHeader,
-.modalBody,
-.modalFooter {
-  padding: 10px 20px;
+  @media (max-width: 480px) {
+    padding: 25px;
+  }
 }
 
 .modalHeader {
-  min-height: 60px;
+  min-height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,10 +70,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.modalFooter button:last-child {
-  margin-left: 10px;
+  gap: 10px;
 }
 
 .modalClose {

@@ -17,19 +17,21 @@ const Modal = ({
     <>
       {isOpen && (
         <div className={styles.modalOverlay}>
-          <div className={styles.modalWindow}>
-            <div className={styles.modalHeader}>
-              <div className={styles.modalTitle}>{title}</div>
-              <Button onClick={onCancel} className={styles.modalClose}>
-                X
-              </Button>
-            </div>
+          <div className={styles.modalWrapper}>
+            <div className={styles.modalWindow}>
+              <div className={styles.modalHeader}>
+                <div className={styles.modalTitle}>{title}</div>
+                <Button onClick={onCancel} className={styles.modalClose}>
+                  X
+                </Button>
+              </div>
 
-            <div className={styles.modalBody}>{children}</div>
+              <div className={styles.modalBody}>{children}</div>
 
-            <div className={styles.modalFooter}>
-              <Button onClick={onCancel}>{titleCancel}</Button>
-              <Button onClick={onSubmit}>{titleSubmit}</Button>
+              <div className={styles.modalFooter}>
+                <Button onClick={onCancel}>{titleCancel}</Button>
+                <Button onClick={onSubmit}>{titleSubmit}</Button>
+              </div>
             </div>
           </div>
         </div>

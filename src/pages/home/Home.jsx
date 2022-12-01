@@ -64,7 +64,6 @@ const Home = () => {
   const [filterSearch, setFilterSearch] = useState('');
 
   const itemSearch = (todos, filter) => {
-    console.log(todos.name);
     if (filter.length < 1) {
       return todos;
     }

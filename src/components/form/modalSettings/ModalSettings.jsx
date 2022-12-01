@@ -16,7 +16,7 @@ const ModalSettings = ({ isOpen, setIsOpen }) => {
   };
   return (
     <Modal
-      title='Edit Todo'
+      title='Settings'
       isOpen={isOpen}
       onCancel={() => {
         setIsOpen(false);

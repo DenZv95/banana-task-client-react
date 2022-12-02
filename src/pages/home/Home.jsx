@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { $api } from '@/api/Api';
 
@@ -27,10 +28,6 @@ const Home = () => {
 
   let navigate = useNavigate();
   const { isAuth } = useAuth();
-
-  if (!isAuth) {
-    navigate('/login');
-  }
 
   useQuery(
     'get tasks',
@@ -76,6 +73,8 @@ const Home = () => {
   const data = itemSearch(itemFilter(todoList, filter), filterSearch);
   return (
     <div className={styles.limiter}>
+      {!isAuth && <Navigate to='/login' replace={true} />}
+
       <div className={styles.container}>
         <div className={styles.searchContainer}>
           <Input

@@ -1,3 +1,6 @@
+App in the main branch uses [Laravel api](https://github.com/DenZv95/banana-task-server-laravel).
+The app version working with [banana-task-server-nodejs](https://github.com/DenZv95/banana-task-server-nodejs) has been saved in the api-node-js branch.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

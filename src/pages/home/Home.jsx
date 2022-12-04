@@ -26,7 +26,6 @@ const Home = () => {
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [isOpenSettings, setIsOpenSettings] = useState(false);
 
-  let navigate = useNavigate();
   const { isAuth } = useAuth();
 
   useQuery(

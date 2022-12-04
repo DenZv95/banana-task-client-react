@@ -32,12 +32,12 @@ const Home = () => {
     'get tasks',
     () =>
       $api({
-        url: `/tasks/list`,
+        url: `/tasks`,
       }),
     {
       refetchOnWindowFocus: false,
       onSuccess(data) {
-        setTodoList(data);
+        setTodoList(data.data);
       },
     }
   );
@@ -102,7 +102,7 @@ const Home = () => {
           {data.map((todo) => {
             return (
               <ItemTodo
-                key={todo._id}
+                key={todo.id}
                 item={todo}
                 setIsOpenEdit={setIsOpenEdit}
                 setTodoItemEdit={setTodoItemEdit}

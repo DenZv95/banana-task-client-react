@@ -11,16 +11,20 @@ import styles from './ModalEdit.module.scss';
 const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
   const [text, setText] = useState('');
   const { updateTodo } = useApi();
-  const [completed, setCompleted] = useState(false);
+  const [completed, setCompleted] = useState('notDone');
 
   useEffect(() => {
     setText(todoItem.name);
-    setCompleted(todoItem.complete ? true : false);
+    setCompleted(todoItem.done ? 'Done' : 'notDone');
   }, [isOpen, todoItem]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateTodo.mutate({ _id: todoItem._id, name: text, complete: completed });
+    updateTodo.mutate({
+      id: todoItem.id,
+      name: text,
+      done: completed === 'Done' ? 1 : 0,
+    });
     setIsOpen(false);
   };
 
@@ -50,8 +54,8 @@ const ModalEdit = ({ isOpen, setIsOpen, todoItem }) => {
           value={completed}
           onChange={(e) => setCompleted(e.target.value)}
         >
-          <option value={false}>Incomplete</option>
-          <option value={true}>Complete</option>
+          <option value={'notDone'}>Incomplete</option>
+          <option value={'Done'}>Complete</option>
         </select>
       </form>
     </Modal>

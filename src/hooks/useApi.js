@@ -13,7 +13,7 @@ export const useApi = () => {
     'createTodo',
     (textTodo) =>
       $api({
-        url: '/tasks/create',
+        url: '/tasks',
         type: 'POST',
         body: { name: textTodo },
       }),
@@ -28,12 +28,11 @@ export const useApi = () => {
     'updateTodo',
     (todo) =>
       $api({
-        url: '/tasks/update',
+        url: `/tasks/${todo.id}`,
         type: 'PUT',
         body: {
-          taskId: todo._id,
           name: todo.name,
-          complete: todo.complete,
+          done: todo.done,
         },
       }),
     {
@@ -47,9 +46,8 @@ export const useApi = () => {
     'removeTodo',
     (todoId) =>
       $api({
-        url: '/tasks/delete',
+        url: `/tasks/${todoId}`,
         type: 'DELETE',
-        body: { taskId: todoId },
       }),
     {
       onSuccess(data) {
@@ -62,9 +60,9 @@ export const useApi = () => {
     'completeTodo',
     (todoBody) =>
       $api({
-        url: '/tasks/update',
+        url: `/tasks/${todoBody.id}`,
         type: 'PUT',
-        body: todoBody,
+        body: { done: todoBody.done },
       }),
     {
       onSuccess(data) {

@@ -33,14 +33,14 @@ const Auth = () => {
     'Auth',
     () =>
       $api({
-        url: '/users/login',
+        url: '/login',
         auth: false,
         type: 'POST',
         body: { email, password },
       }),
     {
       onSuccess(data) {
-        successLogin(data.token);
+        successLogin(data.data.token);
       },
     }
   );
@@ -49,14 +49,14 @@ const Auth = () => {
     'Registration',
     () =>
       $api({
-        url: '/users/register',
+        url: '/register',
         auth: false,
         type: 'POST',
-        body: { email, password },
+        body: { email, password, password_confirmation: password },
       }),
     {
       onSuccess(data) {
-        successLogin(data.token);
+        successLogin(data.data.token);
       },
     }
   );

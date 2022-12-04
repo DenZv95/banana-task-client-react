@@ -17,19 +17,19 @@ const ItemTodo = ({ item, setTodoItemEdit, setIsOpenEdit }) => {
   return (
     <li className={styles.ToDoItem}>
       <div className={styles.todoActions}>
-        <CheckBox todoId={item._id} checked={item.complete} />
+        <CheckBox todoId={item.id} checked={item.done} />
       </div>
 
       <div className={styles.todoDetails}>
         <p className={styles.text}>{item.name}</p>
-        <p>{format(new Date(item.createdAt), 'dd MMM yyyy')}</p>
+        <p>{format(new Date(item.created_at), 'dd MMM yyyy')}</p>
       </div>
 
       <div className={styles.todoActions}>
         <Button
           className={styles.buttonSvg}
           onClick={() => {
-            removeTodo.mutate(item._id);
+            removeTodo.mutate(item.id);
           }}
         >
           <TrashImage />

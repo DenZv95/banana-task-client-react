@@ -15,8 +15,8 @@ const CheckBox = ({ todoId, checked = false }) => {
     <Button
       onClick={() => {
         completeTodo.mutate({
-          taskId: todoId,
-          complete: !checked,
+          id: todoId,
+          done: !checked,
         });
       }}
       className={`${styles.checkBox} ${classButton}`}

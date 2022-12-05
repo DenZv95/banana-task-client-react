@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import { useMutation } from 'react-query';
+
+import { $api } from '@/api/Api';
 
 import Button from '@/components/ui/button/Button';
 import Input from '@/components/ui/input/Input';
@@ -10,10 +13,28 @@ import styles from './ModalSettings.module.scss';
 
 const ModalSettings = ({ isOpen, setIsOpen }) => {
   const { setIsAuth } = useAuth();
+
+  const logout = useMutation(
+    'logout',
+    (todoBody) =>
+      $api({
+        url: `/logout`,
+        type: 'POST',
+        body: {},
+      }),
+    {
+      onSuccess(data) {
+        console.log(data);
+        localStorage.removeItem('token');
+        setIsAuth(false);
+      },
+    }
+  );
+
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuth(false);
+    logout.mutate();
   };
+
   return (
     <Modal
       title='Settings'
@@ -27,9 +48,8 @@ const ModalSettings = ({ isOpen, setIsOpen }) => {
         <Input type='text' placeholder='email' />
         <Input type='text' placeholder='Password' />
         <Input type='text' placeholder='Password' />
-
-        <Button onClick={handleLogout}>Logout</Button>
       </form>
+      <Button onClick={handleLogout}>Logout</Button>
     </Modal>
   );
 };

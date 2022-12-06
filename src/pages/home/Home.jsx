@@ -14,6 +14,7 @@ import Input from '@/components/ui/input/Input';
 
 import { useAuth } from '@/hooks/useAuth';
 import { useTodoFilter } from '@/hooks/useTodoFilter';
+import { useTodoSearch } from '@/hooks/useTodoSearch';
 
 import { ReactComponent as SettingsImage } from '@/images/settings.svg';
 
@@ -44,19 +45,9 @@ const Home = () => {
 
   const { filteredItems, filterTodo, setFilterTodo } = useTodoFilter(todoList);
 
-  const [filterSearch, setFilterSearch] = useState('');
+  const { availableItems, enteredSearchValue, setEnteredSearchValue } =
+    useTodoSearch(filteredItems);
 
-  const itemSearch = (todos, filter) => {
-    if (filter.length < 1) {
-      return todos;
-    }
-
-    return todos.filter((todo) => {
-      return todo.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
-    });
-  };
-
-  const data = itemSearch(filteredItems, filterSearch);
   return (
     <div className={styles.limiter}>
       {!isAuth && <Navigate to='/login' replace={true} />}
@@ -66,9 +57,9 @@ const Home = () => {
           <Input
             placeholder='Search'
             className={styles.input}
-            value={filterSearch}
+            value={enteredSearchValue}
             onChange={(e) => {
-              setFilterSearch(e.target.value);
+              setEnteredSearchValue(e.target.value);
             }}
           />
           <div className={styles.buttonGroup}>
@@ -86,7 +77,7 @@ const Home = () => {
         </div>
 
         <ul className={styles.ToDoList}>
-          {data.map((todo) => {
+          {availableItems.map((todo) => {
             return (
               <ItemTodo
                 key={todo.id}

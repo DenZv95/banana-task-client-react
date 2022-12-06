@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 
 import { $api } from '@/api/Api';
@@ -14,6 +13,7 @@ import Button from '@/components/ui/button/Button';
 import Input from '@/components/ui/input/Input';
 
 import { useAuth } from '@/hooks/useAuth';
+import { useTodoFilter } from '@/hooks/useTodoFilter';
 
 import { ReactComponent as SettingsImage } from '@/images/settings.svg';
 
@@ -42,20 +42,7 @@ const Home = () => {
     }
   );
 
-  const [filter, setFilter] = useState('all');
-
-  const itemFilter = (todos, filter) => {
-    switch (filter) {
-      case 'all':
-        return todos;
-      case 'active':
-        return todos.filter((item) => !item.complete);
-      case 'done':
-        return todos.filter((item) => item.complete);
-      default:
-        return todos;
-    }
-  };
+  const { filteredItems, filterTodo, setFilterTodo } = useTodoFilter(todoList);
 
   const [filterSearch, setFilterSearch] = useState('');
 
@@ -69,7 +56,7 @@ const Home = () => {
     });
   };
 
-  const data = itemSearch(itemFilter(todoList, filter), filterSearch);
+  const data = itemSearch(filteredItems, filterSearch);
   return (
     <div className={styles.limiter}>
       {!isAuth && <Navigate to='/login' replace={true} />}
@@ -85,7 +72,7 @@ const Home = () => {
             }}
           />
           <div className={styles.buttonGroup}>
-            <FilterButtonPanel filter={filter} setFilter={setFilter} />
+            <FilterButtonPanel filter={filterTodo} setFilter={setFilterTodo} />
             <div className={styles.settingsButton}>
               <Button
                 onClick={() => {
